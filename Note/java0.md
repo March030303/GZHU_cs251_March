@@ -38,10 +38,68 @@ arr2=new int[10];//不赋值
 ```
 
 ## 数组的操作
-### 1、长度:arr.length()
-### 2、赋值:arr[i]=value
-### 3、取值:value=arr[i]
+ 1、长度:arr.length()
+ 2、赋值:arr[i]=value
+ 3、取值:value=arr[i]
+ 4、直接==数组名.for==即可在idea遍历
 
+ 其实有时候不需要把所有数据存在数组中，如果是==找最大最小、求和==类似的问题，完全能用临时变量计算
 # <center>方法
 ![](https://cdn.jsdelivr.net/gh/March030303/Picgo@main/img/20260502221125033.png)
-这里报错是因为接口中并没有定义get方法，所以不能调用get方法。
+这里报错是因为接口中并没有定义get方法，所以不能重写get方法。
+
+## this关键字
+1、当成员变量与形参名相同时，可以使用this关键字来区分。
+```java
+class StudentExtended{
+    private long studentID;
+    private int classID;
+    private String name;
+    private String sex;
+    private int age;
+    public StudentExtended(long studentID, int classID, String name,
+                   String sex, int age){
+        this.studentID = studentID;
+        this.classID = classID;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
+}
+```
+2、当构造方法中，有多个参数时，可以使用this关键字来调用其他构造方法。
+```java
+class StudentExtended{
+public StudentExtended(long studentID, int classID, String name,
+                   String sex, int age){
+        this.studentID = studentID;
+        this.classID = classID;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
+
+public StudentExtended(long studentID, int classID, String name){
+        this(studentID, classID, name, "男", 0);
+    }
+}
+```
+## super关键字
+1、super关键字可以访问父类的成员变量，可以类比this的第二种用法
+```java
+class StudentExtended{
+public StudentExtended(long studentID, int classID, String name,
+                   String sex, int age){
+        this.studentID = studentID;
+        this.classID = classID;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
+}
+class StudentExtended2 extends StudentExtended{
+    public StudentExtended2(long studentID, int classID, String name, String sex, int age){
+        super(studentID, classID, name, sex, age);
+    }
+}
+```
